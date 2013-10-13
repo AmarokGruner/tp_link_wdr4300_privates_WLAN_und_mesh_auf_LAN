@@ -1,0 +1,76 @@
+config interface 'loopback'
+        option ifname 'lo'
+        option proto 'static'
+        option ipaddr '127.0.0.1'
+        option netmask '255.0.0.0'
+
+config interface 'wan'
+        option ifname 'eth0.2'
+        option proto 'dhcp'
+        option type 'bridge'
+        option accept_ra '0'
+        option auto '1'
+        option macaddr 'a2:f3:c1:4a:2a:e9'
+        option hostname 'HOSTNAME'
+
+config switch
+        option name 'eth0'
+        option reset '1'
+        option enable_vlan '1'
+        
+config switch_vlan                        
+        option device 'eth0'              
+        option vlan '2'                   
+        option ports '0t 1t'              
+        option vid '2'                    
+                                          
+config switch_vlan                        
+        option vlan '3'                   
+        option device 'eth0'              
+        option ports '0t 1t'              
+        option vid '3'                    
+                                          
+config switch_vlan                        
+        option device 'eth0'     
+        option vlan '4'       
+        option ports '0t 1t'  
+        option vid '4'     
+
+config interface 'freifunk'               
+        option ifname 'bat0'              
+        option type 'bridge'              
+        option proto 'none'               
+        option auto '1'                   
+        option accept_ra '1'              
+        option macaddr 'a0:f3:c1:49:2a:e8'
+        option ifname 'eth0.4 bat0'       
+                                          
+config interface 'mesh'                   
+        option proto 'batadv'             
+        option mtu '1528'                 
+        option mesh 'bat0'                
+                                          
+config interface 'mesh5'                  
+        option proto 'batadv'             
+        option mtu '1528'                 
+        option mesh 'bat0'  
+        
+config interface 'mesh_vpn'               
+        option ifname 'mesh-vpn'          
+        option proto 'batadv'             
+        option mesh 'bat0'                
+        option macaddr 'a2:f3:c1:4a:2a:e8'
+                                          
+config interface 'privat'                 
+        option type 'bridge'              
+        option _orig_ifname 'radio0.network3 radio1.network3'
+        option _orig_bridge 'true'                           
+        option proto 'dhcp'                                  
+        option ifname 'eth0.2'                               
+        option hostname 'HOSTNAME'                            
+                                                             
+config interface 'mesh_lan'                                  
+        option ifname 'eth0.3'                               
+        option proto 'batadv'                                
+        option mesh 'bat0'                                   
+        option macaddr 'a3:f3:c1:4a:2a:e8'            
